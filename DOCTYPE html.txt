@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オリエンテーリング結果</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f0f0f0; margin: 0; }
+        .container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center; }
+        input[type="password"] { padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; width: 200px; }
+        button { padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background-color: #0056b3; }
+        #error-message { color: red; margin-top: 10px; }
+        .results-links { text-align: left; margin-top: 20px; }
+        .results-links a { display: block; margin-bottom: 10px; color: #007bff; text-decoration: none; }
+        .results-links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-form">
+        <h1>オリエンテーリング結果</h1>
+        <p>結果を閲覧するにはパスワードを入力してください。</p>
+        <input type="password" id="passwordInput" placeholder="パスワード">
+        <button onclick="checkPassword()">結果を見る</button>
+        <p id="error-message"></p>
+    </div>
+
+    <div class="container" id="results-content" style="display:none;">
+        <h1>オリエンテーリング結果一覧</h1>
+        <p>以下のリンクから各コースの結果をご覧ください。</p>
+        <div class="results-links">
+            <a href="https://drive.google.com/drive/folders/1wdpEF0K9D3YtRW9YN7zm2tkm3bpf_7BD?usp=drive_link" target="_blank">かんたんコース 結果</a>
+            <a href="https://drive.google.com/drive/folders/15zZz3jFe2OKO2b9jj_NKp9b2E7l1fc4r?usp=drive_link" target="_blank">ふつうコース 結果</a>
+            <a href="https://drive.google.com/drive/folders/1Hp-ahwC3rxx21kTujsq3VPWuG9BPE7Vl?usp=drive_link" target="_blank">ながめコース 結果</a>
+            <a href="https://drive.google.com/drive/folders/1dMFfynfZqC1dXCn5qY_h--By8koZxRrl?usp=drive_link" target="_blank">チャレンジ1 結果</a>
+            <a href="https://drive.google.com/drive/folders/1OLGwCh2QRAVw8wgb5e3ZOxzr4SMZUlE6?usp=drive_link" target="_blank">チャレンジ2 結果</a>
+            <a href="https://drive.google.com/drive/folders/1a5EToFjf35Mzi0DUx2VWJ860CY9oX4Qe?usp=drive_link" target="_blank">チャレンジ3 結果</a>
+            </div>
+    </div>
+
+    <script>
+        const yogo0719 = "your_secret_password"; // ここに設定したいパスワードを入力
+        const passwordInput = document.getElementById('passwordInput');
+        const errorMessage = document.getElementById('error-message');
+        const loginForm = document.getElementById('login-form');
+        const resultsContent = document.getElementById('results-content');
+
+        function checkPassword() {
+            if (passwordInput.value === yogo0719) {
+                loginForm.style.display = 'none';
+                resultsContent.style.display = 'block';
+            } else {
+                errorMessage.textContent = "パスワードが間違っています。";
+            }
+        }
+
+        // Enterキーでパスワードチェックをトリガー
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
